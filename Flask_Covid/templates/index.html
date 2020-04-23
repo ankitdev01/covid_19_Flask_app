@@ -1,0 +1,213 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style type="text/css">
+    	body{
+   		font-family:Segoe UI Historic; 
+   	}
+   	img{
+   		height: 80px;
+   		width: 80px;
+   	}
+   	#para1{
+   		font-weight: bold;
+   	}
+   	input{
+   		width: 280px;
+   		padding-left: 10px;
+   	}
+   	#get_data{
+   		border-radius: 20px;
+   		border:none;
+   		box-shadow: 4px 4px 12px grey;
+   		padding-bottom: 8px; 
+   		width: 100px;
+   		height: 38px;
+   		margin-left: 10px;
+   		margin-top: 18px;
+   		padding-top: 4px;
+   		outline: none;
+   		background-color: blue;
+   		color:#fff;
+   	}
+   	#rotate{
+   		animation: anime 6s infinite linear;
+   	}
+   	@keyframes anime{
+   		from{
+   			transform: rotate(0deg);
+   		}
+   		to{
+   			transform: rotate(360deg);
+   		}
+   	}
+   	#btn-2{
+   		border-radius: 0px;
+   	}
+   	.main{
+   		margin-bottom: -33px;
+   		background-image: url(static/virus.svg);
+
+   	}
+   	#main{
+   		margin-top: -33px;
+   	}
+   	.active{
+
+   	}
+   	.confirmed{
+      color: blue;
+   	}
+   	.Recovered{
+       color: green;
+   	}
+   	.deaths{
+   		color: red;
+   	}
+   	#img-head{
+   		width: 100%;
+   		height: 200px;
+   		margin-top: 30px;
+   	}
+   	.img-responsive{
+   		width: 150px;
+   		height: 170px;
+   		margin-top: 40px;
+   	}
+   	input::placeholder{
+     padding-left: 10px;
+   	}
+   	.container-symptoms{
+   		background-color: yellow;
+   		height: 550px;
+   		padding-top: 40px;
+   	}
+   	@media only screen and (max-width: 600px) {
+  .container-symptoms{
+  	padding-top: 40px;
+   		background-color: yellow;
+   		height: 1400px;
+   	}
+}
+
+
+   .container-precautions{
+   		background-color: ;
+   		height: 550px;
+   		padding-top: 40px;
+   }
+    	@media only screen and (max-width: 600px) {
+  .container-precautions{
+  	padding-top: 40px;
+   		background-color:;
+   		height: 1400px;
+   	}
+}
+
+ footer{
+ 	height: 50px;
+ 	font-family: monospace;
+ 	padding-top: 10px;
+ 	background-color: orange;
+
+ }
+ footer a{
+ 	color: red;
+ }
+    </style>
+  </head>
+  <body>
+ <div class="jumbotron jumbotron-fluid bg-warning">
+  <div class="container">
+    <h1 class="display-4">C<img id="rotate" src="{{url_for('static', filename='im.png')}}" />vid-19 Live Tracker Web App</h1>
+    <p class="lead" id="para1">STAY HOME STAY SAFE</p>
+  </div>
+</div>
+<div class="main">
+<div class="jumbotron text-center bg-transparent" id="main">
+	<h2 class="mb-5">Get Country Live Covid-19 Data</h2>
+    	<div class="text-center">
+	<form action="/" method="POST" >
+ <input type="text" name="country_name" placeholder="Country Name"><br>
+<button type="submit"  id="get_data">Get Data</button>
+</form>
+
+	<h3 class="mt-5">Country Name : {{ cn }}  </h3><br>
+	<p><span class="active">Active : {{ ac }}</span> &nbsp;&nbsp;&nbsp; <span class="confirmed">Confirmed : {{ cc }}</span>  &nbsp;&nbsp;&nbsp; <span class="Recovered">Recovered : {{ rc }}</span> &nbsp;&nbsp;&nbsp; <span class="deaths">Deaths : {{ dc }}</span> </p>
+	<p><span class="lead"><i>Last Updated : {{ date }}</i></span> </p>
+
+</div>
+</div>
+</div>
+<!-- State Part -->
+<div class="main-2">
+<div class="jumbotron text-center bg-transparent" id="main">
+	<h2 class="mb-5">Get State Live Covid-19 Data</h2>
+    	<div class="text-center">
+	<form action="/state" method="POST" >
+ <input type="text" name="state_name" placeholder="State Name"><br>
+<button type="submit"  id="get_data">Get Data</button>
+</form>
+
+	<h3 class="mt-5">State Name : {{ sn }}  </h3><br>
+	<p><span class="active">Total : {{ sc }}</span> &nbsp;&nbsp;&nbsp; <span class="Recovered">Recovered : {{ sr }}</span> &nbsp;&nbsp;&nbsp; <span class="deaths">Deaths : {{ sd }}</span> </p>
+
+</div>
+</div>
+</div>
+
+<div class="container-symptoms">
+<div class="text-center">
+	<h2>Covid-19 Symptoms</h2>
+</div>
+<div class="container" id="img-head">
+<div class="row text-center">
+  <div class="col-sm-4"><img src="{{url_for('static', filename='img1.png')}}" class="img-responsive"></div>
+    <div class="col-sm-4"><img src="{{url_for('static', filename='img2.png')}}" class="img-responsive"></div>
+      <div class="col-sm-4"><img src="{{url_for('static', filename='img3.png')}}" class="img-responsive"></div>
+  </div>
+
+      <div class="row text-center">
+  <div class="col-sm-4"><img src="{{url_for('static', filename='img4.png')}}" class="img-responsive"></div>
+    <div class="col-sm-4"><img src="{{url_for('static', filename='img5.png')}}" class="img-responsive"></div>
+      <div class="col-sm-4"><img src="{{url_for('static', filename='img6.png')}}" class="img-responsive"></div>
+    </div>
+</div>
+</div>
+
+
+<!-- Precautions -->
+
+<div class="container-precautions">
+<div class="text-center">
+	<h2>Covid-19 Precautions</h2>
+</div>
+<div class="container" id="img-head">
+<div class="row text-center">
+  <div class="col-sm-4"><img src="{{url_for('static', filename='img7.png')}}" class="img-responsive"></div>
+    <div class="col-sm-4"><img src="{{url_for('static', filename='img8.png')}}" class="img-responsive"></div>
+      <div class="col-sm-4"><img src="{{url_for('static', filename='img9.png')}}" class="img-responsive"></div>
+  </div>
+
+      <div class="row text-center">
+  <div class="col-sm-4"><img src="{{url_for('static', filename='img10.png')}}" class="img-responsive"></div>
+    <div class="col-sm-4"><img src="{{url_for('static', filename='img11.png')}}" class="img-responsive"></div>
+      <div class="col-sm-4"><img src="{{url_for('static', filename='img12.png')}}" class="img-responsive"></div>
+    </div>
+</div>
+</div>
+
+<footer class="mt-5">
+	<div class="text-center">
+		<h4>Made with <a href="//linkedin.com/in/ankit-gupta-4b4848196"><i class="fa fa-heart" style="font-size:22px;color:red"></i></a></h4>
+	</div>
+</footer>
+  </body>
+</html>
